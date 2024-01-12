@@ -6,4 +6,5 @@ public class TA extends User{
     public void solveHR(){
         System.out.println("TA");
     }
+
 }
