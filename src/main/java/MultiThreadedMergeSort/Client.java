@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
 public class Client {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         List<Integer> arr = List.of(8, 1 , 6 , 2 , 3 , 9 ,7 , 5);
-        ExecutorService ex = Executors.newCachedThreadPool();
+        ExecutorService ex = Executors.newFixedThreadPool(10);
         Sorter task = new Sorter(arr, ex);
         Future<List<Integer>> sortedArrayFuture = ex.submit(task);
         List<Integer> sortedArr = sortedArrayFuture.get();
