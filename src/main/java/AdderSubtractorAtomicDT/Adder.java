@@ -19,3 +19,6 @@ public class Adder implements Callable<Void> {
 
 // int -> Integer
 // void -> Void
+
+// class : obj : print
+
