@@ -1,8 +1,6 @@
 package Generics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Client {
     public static void main(String[] args) {
@@ -26,6 +24,14 @@ public class Client {
         p2.doSome("String");
         Integer x3 =  Pair.<String,Integer>doSomething("Mohit");
 
+        List<Dog> dogs = new ArrayList<>();
+        dogs.add(new Dog());
+        dogs.add(new Dog());
 
+        Util.printAnimals(dogs);
+        List<? extends Animal> x = new ArrayList<Dog>();
+        System.out.println(dogs);
+
+//        List
     }
 }
