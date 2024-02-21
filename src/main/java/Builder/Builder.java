@@ -13,8 +13,9 @@ public class Builder {
         return name;
     }
 
-    public void setName(String name) {
+    public Builder setName(String name) {
         this.name = name;
+        return this;
     }
 
     public int getId() {
@@ -29,16 +30,18 @@ public class Builder {
         return age;
     }
 
-    public void setAge(int age) {
+    public Builder setAge(int age) {
         this.age = age;
+        return this;
     }
 
     public int getGradYear() {
         return gradYear;
     }
 
-    public void setGradYear(int gradYear) {
+    public Builder setGradYear(int gradYear) {
         this.gradYear = gradYear;
+        return this;
     }
 
     public String getBatch() {
@@ -55,5 +58,17 @@ public class Builder {
 
     public void setPsp(double psp) {
         this.psp = psp;
+    }
+
+    public Student build(){
+        // validations
+        if(this.age > 25){
+            throw new IllegalArgumentException();
+        }
+        if(this.gradYear < 2020){
+            throw new IllegalArgumentException();
+        }
+
+        return new Student(this);
     }
 }

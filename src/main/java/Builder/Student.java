@@ -13,12 +13,7 @@ public class Student {
 //    }
     Student(Builder builder){
         // do validations
-        if(builder.getAge() > 25){
-            throw new IllegalArgumentException();
-        }
-        if(builder.getGradYear() < 2020){
-            throw new IllegalArgumentException();
-        }
+
         // validations are done
 
         this.age = builder.getAge();
