@@ -17,7 +17,7 @@ public class Client {
 
 
 
-//        Student s = new Student(b);
+//        Student s = new Student(new Builder());
 //        Student s = b.build();
 
         // setters will be used once the obj has been created
