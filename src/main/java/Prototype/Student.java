@@ -15,6 +15,7 @@ public class Student implements Prototype<Student>{
     }
 
     public Student copy() {
+        System.out.println("Student");
         Student s = new Student(this);
         return s;
     }
