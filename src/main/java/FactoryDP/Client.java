@@ -15,6 +15,8 @@ public class Client {
 
             Platform p1 = new Platform("Android");
         UIComponentFactory x1 = p1.createFactory();
+        Button b2 = x1.createButton();
+        Menu m2 = x1.createMenu();
 
     }
 }
