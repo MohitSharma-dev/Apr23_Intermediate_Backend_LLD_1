@@ -30,6 +30,11 @@ public class Game {
         List<Player> players;
         List<WinningStrategy> winningStrategies;
 
+        Builder(){
+            this.dimension = 3;
+            this.players = new ArrayList<>();
+            this.winningStrategies = new ArrayList<>();
+        }
         public Builder setDimension(int dimension) {
             this.dimension = dimension;
             return this;
@@ -55,9 +60,38 @@ public class Game {
             return this;
         }
 
+        void validateBotCount(){
+            int botCount = 0;
+            for(Player player : players){
+                if(player.getPlayerType().equals(PlayerType.BOT))
+                    botCount += 1;
+            }
+            if(botCount > 1){
+                throw new RuntimeException("Too many Bots!");
+            }
+        }
+
+        void validateNoOfPlayers(){
+            if(players.size() != this.dimension - 1)
+                throw new RuntimeException("No of players are invalid!");
+        }
+
+        void validateSymbolCount(){
+            // PLEASE COMPLETE THIS
+        }
+        void validate(){
+            // Bot count
+            validateBotCount();
+            // no of Players
+            validateNoOfPlayers();
+            // symbols
+            validateSymbolCount();
+            // HW for you : Please execute this validation
+        }
         public Game build(){
 
             // validations
+            validate();
 
             return new Game(
                     this.dimension,

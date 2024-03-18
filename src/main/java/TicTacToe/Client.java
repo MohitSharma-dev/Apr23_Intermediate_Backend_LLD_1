@@ -23,7 +23,7 @@ public class Client {
         if(gameController.checkState(game).equals(GameState.DRAW)){
             System.out.println("The game ends in a DRAW!");
         } else if(gameController.checkState(game).equals(GameState.SUCCESS)){
-            System.out.println("The Winner is : " + gameController.getWinner());
+            System.out.println("The Winner is : " + gameController.getWinner(game));
         }
 
 

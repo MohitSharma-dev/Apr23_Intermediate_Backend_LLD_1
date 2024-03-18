@@ -5,6 +5,10 @@ public class Symbol {
 
     private String color;
 
+    Symbol(char sym , String color){
+        this.sym = sym;
+        this.color = color;
+    }
     public String getColor() {
         return color;
     }
