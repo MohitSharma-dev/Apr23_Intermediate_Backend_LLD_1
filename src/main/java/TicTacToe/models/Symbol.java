@@ -5,7 +5,7 @@ public class Symbol {
 
     private String color;
 
-    Symbol(char sym , String color){
+    public Symbol(char sym , String color){
         this.sym = sym;
         this.color = color;
     }

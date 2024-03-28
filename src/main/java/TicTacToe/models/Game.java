@@ -159,4 +159,88 @@ public class Game {
     public void setWinningStrategies(List<WinningStrategy> winningStrategies) {
         this.winningStrategies = winningStrategies;
     }
+
+    public void displayBoard(){
+        board.display();
+    }
+
+    public boolean validateMove(Move move){
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        if(row < 0 || row >= board.getSize() || col < 0 || col >= board.getSize()){
+            return false;
+        }
+
+        if(!board.getGrid().get(row).get(col).getCellState().equals(CellState.EMPTY))
+            return false;
+
+        return true;
+
+    }
+    public void makeMove(){
+        Player currentPlayer = players.get(nextPlayerIndex);
+
+        System.out.println("It is " + currentPlayer.getName() + "'s turn! Please make your move.");
+        Move move = currentPlayer.makeMove(board);
+
+        if(!validateMove(move)){
+            System.out.println("Invalid Move! Please try again");
+            return;
+        }
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        Cell cellToChange =  board.getGrid().get(row).get(col);
+        cellToChange.setCellState(CellState.FILLED);
+        cellToChange.setSymbol(currentPlayer.getPlayerSymbol());
+
+        move.setPlayer(currentPlayer);
+        move.setCell(cellToChange);
+//        Move finalMoveObject = new Move(cellToChange , currentPlayer);
+        moves.add(move);
+
+        nextPlayerIndex += 1;
+        nextPlayerIndex %= players.size();
+
+        if(checkWinner(board , move)){
+            gameState = GameState.SUCCESS;
+            winner = currentPlayer;
+        } else if (moves.size() == board.getSize() * board.getSize()){
+            gameState = GameState.DRAW;
+        }
+
+    }
+
+    public boolean checkWinner(Board board , Move move){
+        for(WinningStrategy winningStrategy : winningStrategies){
+            if(winningStrategy.checkWinner(move, board)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void undo(){
+        // whatever you did while making the move, you need to reverse it
+        if(moves.isEmpty()){
+            System.out.println("Nothing to Undo!");
+            return;
+        }
+        Move lastMove = moves.get(moves.size() - 1);
+        moves.remove(moves.size() - 1);
+
+        lastMove.getCell().setCellState(CellState.EMPTY);
+        lastMove.getCell().setSymbol(null);
+
+        nextPlayerIndex -= 1;
+        nextPlayerIndex = (nextPlayerIndex + players.size()) % players.size();
+
+        for(WinningStrategy winningStrategy : winningStrategies){
+            winningStrategy.handleUndo(lastMove , board);
+        }
+    }
 }
+
+// (a - 1 + b) % b

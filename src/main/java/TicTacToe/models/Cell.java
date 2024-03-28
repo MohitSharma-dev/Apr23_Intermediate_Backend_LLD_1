@@ -6,7 +6,7 @@ public class Cell {
     private CellState cellState;
     private Symbol symbol;
 
-    Cell(int row, int col){
+    public Cell(int row, int col){
         this.row = row;
         this.col = col;
         this.cellState = CellState.EMPTY;
@@ -42,5 +42,13 @@ public class Cell {
 
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
+    }
+
+    public void printCell(){
+        if(this.cellState.equals(CellState.EMPTY)){
+            System.out.print("| - |");
+        } else if (this.cellState.equals(CellState.FILLED)){
+            System.out.print("| " + this.symbol.getSym() + " |");
+        }
     }
 }

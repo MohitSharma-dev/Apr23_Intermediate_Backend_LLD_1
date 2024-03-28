@@ -7,7 +7,7 @@ public class Bot extends Player{
     BotDifficultyLevel botDifficultyLevel = BotDifficultyLevel.EASY;
     BotPlayingStrategy botPlayingStrategy;
 
-    Bot(int id , String name , Symbol playerSymbol, BotDifficultyLevel botDifficultyLevel){
+    public Bot(int id , String name , Symbol playerSymbol, BotDifficultyLevel botDifficultyLevel){
         super(id , name , PlayerType.BOT , playerSymbol);
         this.botDifficultyLevel = botDifficultyLevel;
         this.botPlayingStrategy = BotPlayingStrategyFactory
@@ -19,5 +19,9 @@ public class Bot extends Player{
 
     public void setBotDifficultyLevel(BotDifficultyLevel botDifficultyLevel) {
         this.botDifficultyLevel = botDifficultyLevel;
+    }
+
+    public Move makeMove(Board board){
+        return botPlayingStrategy.makeMove(board);
     }
 }

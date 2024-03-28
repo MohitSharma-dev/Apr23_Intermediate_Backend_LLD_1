@@ -25,22 +25,22 @@ public class GameController {
                 .build();
     }
     public void displayBoard(Game game){
-
+        game.displayBoard();
     }
 
     public void makeMove(Game game){
-
+        game.makeMove();
     }
 
     public GameState checkState(Game game){
-        return GameState.IN_PROGRESS;
+        return game.getGameState();
     }
 
     public Player getWinner(Game game){
         return null;
     }
     public void undo(Game game){
-
+        game.undo();
     }
 }
 
