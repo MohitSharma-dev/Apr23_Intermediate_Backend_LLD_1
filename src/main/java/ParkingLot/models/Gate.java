@@ -5,6 +5,7 @@ public class Gate extends BaseModel{
     private Operator operator;
     private int gateNumber;
     private GateStatus gatestatus;
+    private ParkingLot parkingLot;
 
     public GateType getGateType() {
         return gateType;

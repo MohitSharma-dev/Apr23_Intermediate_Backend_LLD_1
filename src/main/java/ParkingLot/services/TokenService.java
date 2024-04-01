@@ -3,6 +3,7 @@ package ParkingLot.services;
 import ParkingLot.models.*;
 import ParkingLot.repositories.GateRepository;
 import ParkingLot.repositories.ParkingLotRepository;
+import ParkingLot.repositories.TokenRepository;
 import ParkingLot.repositories.VehicleRepository;
 import ParkingLot.strategies.SlotAssignmentStrategyFactory;
 
@@ -13,15 +14,18 @@ public class TokenService {
     private GateRepository gateRepository;
     private VehicleRepository vehicleRepository;
     private ParkingLotRepository parkingLotRepository;
+    private TokenRepository tokenRepository;
 
-    TokenService(
+    public TokenService(
             GateRepository gateRepository,
             VehicleRepository vehicleRepository,
-            ParkingLotRepository parkingLotRepository
+            ParkingLotRepository parkingLotRepository,
+            TokenRepository tokenRepository
     ){
         this.gateRepository = gateRepository;
         this.vehicleRepository = vehicleRepository;
         this.parkingLotRepository = parkingLotRepository;
+        this.tokenRepository = tokenRepository;
     }
     public Token issueToken(
         Long gateId,
@@ -67,9 +71,11 @@ public class TokenService {
 
         token.setAssignedSlot(parkingSlot);
         parkingSlot.setSlotStatus(SlotStatus.FILLED);
+
+        Token savedToken = tokenRepository.save(token);
+        savedToken.setNumber(savedToken.getId() + "-TOKEN");
         // 3. Return
 
-
-        return null;
+        return savedToken;
     }
 }
