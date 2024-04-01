@@ -1,5 +1,7 @@
 package ParkingLot.models;
 
+import ParkingLot.strategies.SlotAssignmentStrategy;
+
 import java.util.List;
 
 public class ParkingLot extends BaseModel{
@@ -8,6 +10,15 @@ public class ParkingLot extends BaseModel{
     private int capacity;
     private ParkingLotStatus parkingLotStatus;
     private List<VehicleType> vehicleTypes;
+    private SlotAssignmentStrategyType slotAssignmentStrategyType;
+
+    public SlotAssignmentStrategyType getSlotAssignmentStrategyType() {
+        return slotAssignmentStrategyType;
+    }
+
+    public void setSlotAssignmentStrategyType(SlotAssignmentStrategyType slotAssignmentStrategyType) {
+        this.slotAssignmentStrategyType = slotAssignmentStrategyType;
+    }
 
     public List<ParkingFloor> getParkingFloors() {
         return parkingFloors;
